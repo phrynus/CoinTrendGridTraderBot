@@ -114,10 +114,15 @@ func main() {
 	initKline(config.Symbol, "5m", &tradingCoin.Kline5M, &tradingCoin.Kline5MstopC)
 
 	// 超级趋势
-	Hl2, _ := tradingCoin.Kline5M.SuperTrendPivotHl2(14, 3)
+	Hl2, _ := tradingCoin.Kline5M.SuperTrendPivotHl2(50, 2)
 	log.Println(Hl2.GetDirection())
 	log.Println(Hl2.GetBands())
 	log.Println(Hl2.Value())
+	// 超级趋势
+	Hl21, _ := tradingCoin.Kline1H.SuperTrendPivotHl2(50, 2)
+	log.Println(Hl21.GetDirection())
+	log.Println(Hl21.GetBands())
+	log.Println(Hl21.Value())
 
 	signalChan := make(chan os.Signal, 1)
 	signal.Notify(signalChan, os.Interrupt, syscall.SIGTERM)
